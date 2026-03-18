@@ -15,6 +15,7 @@ export class AuthController {
       const result = await this.registerUser.execute(req.body);
       return res.status(201).json(result);
     } catch (error) {
+      // Delego el error en el middleware errorHandlerMiddleware
       next(error);
     }
   }
@@ -24,6 +25,7 @@ export class AuthController {
       const result = await this.loginUser.execute(req.body);
       return res.status(200).json(result);
     } catch (error) {
+      // Delego el error en el middleware errorHandlerMiddleware
       next(error);
     }
   }
@@ -33,6 +35,7 @@ export class AuthController {
       const result = await this.renewToken.execute(req.body);
       return res.status(200).json(result);
     } catch (error) {
+      // Delego el error en el middleware errorHandlerMiddleware
       next(error);
     }
   }

@@ -3,6 +3,8 @@ PORT=3000
 # Base de datos
 DB_CNN=database connection string
 
+SALT_ROUNDS=10
+
 # JWT
 ACCESS_EXPIRY=15m
 REFRESH_EXPIRY=7d

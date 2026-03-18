@@ -41,12 +41,13 @@ export class JwtTokenServiceSecurity implements TokenService {
         iat: number;
       };
 
-      // devolver solo los campos limpios, sin exp ni iat
       return {
         id: decoded.id,
         email: decoded.email,
       };
-    } catch {
+    } catch (error) {
+      console.error(error);
+
       throw new AppError("Invalid or expired token", 401);
     }
   }
