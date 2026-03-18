@@ -19,6 +19,7 @@ export class TokenMongoRepository implements TokenRepository {
 
   async findByToken(token: string): Promise<Token | null> {
     const doc = await TokenModel.findOne({ token }).lean();
+
     if (!doc) return null;
     return new Token(
       doc.userId.toString(),
