@@ -1,8 +1,9 @@
-import defaultConfig from "./config/default";
 import app from "./app";
-import { dbConnection } from "./database/mongoDB";
+
+import defaultConfig from "./shared/config/default";
+import dbConnection from "./shared/database/mongoDB";
 
 app.listen(defaultConfig.port, async () => {
   await dbConnection();
-  console.log(`Example app listening on port ${defaultConfig.port}`);
+  console.log(`Server listen in port ${defaultConfig.port}`);
 });

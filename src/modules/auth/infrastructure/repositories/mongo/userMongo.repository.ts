@@ -1,0 +1,26 @@
+import { User } from "../../../domain/entities/user";
+import { UserRepository } from "../../../domain/repositories/user.repository";
+import { UserModel } from "../../models/User.model";
+
+export class UserMongoRepository implements UserRepository {
+  async findByEmail(email: string): Promise<User | null> {
+    const doc = await UserModel.findOne({ email }).lean();
+    if (!doc) return null;
+    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+  }
+
+  async findById(id: string): Promise<User | null> {
+    const doc = await UserModel.findById(id).lean();
+    if (!doc) return null;
+    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+  }
+
+  async save(user: User): Promise<User> {
+    const doc = await UserModel.create({
+      email: user.getEmail(),
+      password: user.getPassword(),
+      isActive: user.getIsActive(),
+    });
+    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+  }
+}

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import defaultConfig from "../config/default";
 
-export async function dbConnection() {
+async function dbConnection() {
   try {
     await mongoose.connect(defaultConfig.database || "");
     console.log("Conexión DB existosa");
@@ -10,3 +10,5 @@ export async function dbConnection() {
     throw new Error("Error al conectarse a la base de datos, ver Logs");
   }
 }
+
+export default dbConnection;

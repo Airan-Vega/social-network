@@ -1,2 +1,10 @@
 PORT=3000
+
+# Base de datos
 DB_CNN=database connection string
+
+# JWT
+ACCESS_EXPIRY=15m
+REFRESH_EXPIRY=7d
+JWT_ACCESS_SECRET=/wK0qD9%D2
+JWT_REFRESH_SECRET=tlKS7IC62*.
