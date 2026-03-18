@@ -1,4 +1,3 @@
-// infrastructure/models/TokenModel.ts
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface ITokenDocument extends Document {

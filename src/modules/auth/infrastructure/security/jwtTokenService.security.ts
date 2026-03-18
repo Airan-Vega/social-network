@@ -36,7 +36,16 @@ export class JwtTokenServiceSecurity implements TokenService {
       if (!this.refreshSecret) {
         throw new Error("JWT_REFRESH_SECRET is required");
       }
-      return jwt.verify(token, this.refreshSecret) as TokenPayload;
+      const decoded = jwt.verify(token, this.refreshSecret) as TokenPayload & {
+        exp: number;
+        iat: number;
+      };
+
+      // devolver solo los campos limpios, sin exp ni iat
+      return {
+        id: decoded.id,
+        email: decoded.email,
+      };
     } catch {
       throw new AppError("Invalid or expired token", 401);
     }

@@ -1,4 +1,3 @@
-// interfaces/controllers/AuthController.ts
 import { Request, Response, NextFunction } from "express";
 import { RegisterUserUseCase } from "../../application/useCases/registerUser.useCase";
 import { LoginUserUseCase } from "../../application/useCases/loginUser.useCase";
