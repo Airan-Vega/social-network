@@ -1,4 +1,3 @@
-// interfaces/middlewares/authMiddleware.ts
 import { Request, Response, NextFunction } from "express";
 import { JwtTokenServiceSecurity } from "../../infrastructure/security/jwtTokenService.security";
 import { AppError } from "../../../../shared/utils/appError";

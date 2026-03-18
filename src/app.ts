@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { router } from "./routes";
-import { errorHandler } from "./shared/middleware/errorHandler.middleware";
+import { errorHandlerMiddleware } from "./shared/middleware/errorHandler.middleware";
 
 const app = express();
 
@@ -19,6 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", router);
 
-app.use(errorHandler);
+app.use(errorHandlerMiddleware);
 
 export default app;
