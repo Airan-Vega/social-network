@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 import { AppError } from "../../../../shared/utils/appError";
 import { Token } from "../../domain/entities/token";
 import { TokenRepository } from "../../domain/repositories/token.repository";
@@ -18,17 +19,26 @@ export class LoginUserUseCase {
   async execute(dto: AuthCredentialsDto): Promise<AuthResponseDto> {
     // 1. Verificar que el usuario existe
     const user = await this.userRepository.findByEmail(dto.email);
-    if (!user) throw new AppError("Invalid credentials", 401);
+    if (!user)
+      throw new AppError(
+        ERROR_MESSAGES.INVALID_CREDENTIALS,
+        HTTP_CODES.UNAUTHORIZED,
+      );
 
     // 2. Verificar que está activo
-    if (!user.getIsActive()) throw new AppError("Account is disabled", 403);
+    if (!user.getIsActive())
+      throw new AppError(ERROR_MESSAGES.ACCOUNT_DISABLED, HTTP_CODES.FORBIDDEN);
 
     // 3. Verificar el password
     const isValid = await this.passwordService.compare(
       dto.password,
       user.getPassword(),
     );
-    if (!isValid) throw new AppError("Invalid credentials", 401);
+    if (!isValid)
+      throw new AppError(
+        ERROR_MESSAGES.INVALID_CREDENTIALS,
+        HTTP_CODES.UNAUTHORIZED,
+      );
 
     // 4. Invalidar refresh tokens anteriores del usuario
     await this.tokenRepository.deleteByUserId(user.getId()!);

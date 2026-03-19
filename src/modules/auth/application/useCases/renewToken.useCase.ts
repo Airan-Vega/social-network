@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 import { AppError } from "../../../../shared/utils/appError";
 import { Token } from "../../domain/entities/token";
 import { TokenRepository } from "../../domain/repositories/token.repository";
@@ -14,16 +15,22 @@ export class RenewTokenUseCase {
   async execute(dto: RenewTokenDto): Promise<AuthResponseDto> {
     // 1. Verificar que el refresh token es un JWT válido
     const payload = this.tokenService.verifyRefreshToken(dto.refreshToken);
-    if (!payload) throw new AppError("Invalid token", 401);
+    if (!payload)
+      throw new AppError(
+        ERROR_MESSAGES.TOKEN_NOT_FOUND,
+        HTTP_CODES.UNAUTHORIZED,
+      );
 
     // 2. Verificar que el refresh token existe en base de datos
     const tokenEntity = await this.tokenRepository.findByToken(
       dto.refreshToken,
     );
-    if (!tokenEntity) throw new AppError("Token not found", 401);
+    if (!tokenEntity)
+      throw new AppError(ERROR_MESSAGES.TOKEN_NOT_FOUND, HTTP_CODES.NOT_FOUND);
 
     // 3. Verificar que no ha expirado (lógica de la entidad)
-    if (tokenEntity.isExpired()) throw new AppError("Token expired", 401);
+    if (tokenEntity.isExpired())
+      throw new AppError(ERROR_MESSAGES.TOKEN_EXPIRED, HTTP_CODES.UNAUTHORIZED);
 
     // 4. Rotar — eliminar el viejo y generar uno nuevo
     await this.tokenRepository.deleteByUserId(tokenEntity.getUserId());

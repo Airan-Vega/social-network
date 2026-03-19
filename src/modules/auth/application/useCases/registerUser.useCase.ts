@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 import { AppError } from "../../../../shared/utils/appError";
 import { Token } from "../../domain/entities/token";
 import { User } from "../../domain/entities/user";
@@ -19,7 +20,11 @@ export class RegisterUserUseCase {
   async execute(dto: AuthCredentialsDto): Promise<AuthResponseDto> {
     // 1. Verificar que el email no esté en uso
     const existingUser = await this.userRepository.findByEmail(dto.email);
-    if (existingUser) throw new AppError("Email already in use", 409);
+    if (existingUser)
+      throw new AppError(
+        ERROR_MESSAGES.EMAIL_ALREADY_IN_USE,
+        HTTP_CODES.CONFLICT,
+      );
 
     // 2. Hashear el password
     const hashedPassword = await this.passwordService.hash(dto.password);
