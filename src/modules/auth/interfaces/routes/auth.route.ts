@@ -27,5 +27,9 @@ export const createAuthRouter = (controller: AuthController) => {
     (req, res, next) => controller.renew(req, res, next),
   );
 
+  router.delete("/logout", (req, res, next) =>
+    controller.logout(req, res, next),
+  );
+
   return router;
 };

@@ -1,4 +1,5 @@
 import { LoginUserUseCase } from "./application/useCases/loginUser.useCase";
+import { LogoutUserUseCase } from "./application/useCases/logoutUser.useCase";
 import { RegisterUserUseCase } from "./application/useCases/registerUser.useCase";
 import { RenewTokenUseCase } from "./application/useCases/renewToken.useCase";
 import { TokenMongoRepository } from "./infrastructure/repositories/mongo/tokenMongo.repository";
@@ -28,9 +29,19 @@ const loginUser = new LoginUserUseCase(
   tokenService,
 );
 const renewToken = new RenewTokenUseCase(tokenRepository, tokenService);
+const logoutUser = new LogoutUserUseCase(
+  tokenRepository,
+  userRepository,
+  tokenService,
+);
 
 // 3. Controller
-const authController = new AuthController(registerUser, loginUser, renewToken);
+const authController = new AuthController(
+  registerUser,
+  loginUser,
+  renewToken,
+  logoutUser,
+);
 
 // 4. Router — lo que exportas para app.ts
 export const authRouter = createAuthRouter(authController);
