@@ -31,6 +31,24 @@ export class JwtTokenServiceSecurity implements TokenService {
     });
   }
 
+  verifyAccessToken(token: string): TokenPayload {
+    try {
+      if (!this.accessSecret) {
+        throw new Error("JWT_ACCESS_SECRET is required");
+      }
+      const decoded = jwt.verify(token, this.accessSecret) as TokenPayload & {
+        exp: number;
+        iat: number;
+      };
+      return {
+        id: decoded.id,
+        email: decoded.email,
+      };
+    } catch {
+      throw new AppError("Invalid or expired token", 401);
+    }
+  }
+
   verifyRefreshToken(token: string): TokenPayload {
     try {
       if (!this.refreshSecret) {

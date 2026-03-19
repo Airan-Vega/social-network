@@ -39,7 +39,7 @@ export class LoginUserUseCase {
     const refreshToken = this.tokenService.signRefreshToken(payload);
 
     // 6. Persistir el nuevo refresh token
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 días
     const tokenEntity = new Token(user.getId()!, refreshToken, expiresAt);
     await this.tokenRepository.save(tokenEntity);
 

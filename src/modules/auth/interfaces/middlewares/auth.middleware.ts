@@ -16,7 +16,7 @@ export const authMiddleware = (
     }
 
     const token = authHeader.split(" ")[1];
-    const payload = tokenService.verifyRefreshToken(token);
+    const payload = tokenService.verifyAccessToken(token);
 
     req.user = payload;
     next();
