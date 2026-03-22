@@ -1,10 +1,12 @@
-import { Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { AuthController } from "../controllers/auth.controller";
 import {
   authCredentialsSchema,
   renewTokenSchema,
 } from "../validators/auth.validator";
 import { bodyMiddleware } from "../middlewares/body.middleware";
+import { authMiddleware } from "../middlewares/auth.middleware";
+import { adminMiddleware } from "../../../../shared/middleware/admin.middleware";
 
 export const createAuthRouter = (controller: AuthController) => {
   const router = Router();
@@ -27,8 +29,18 @@ export const createAuthRouter = (controller: AuthController) => {
     (req, res, next) => controller.renew(req, res, next),
   );
 
-  router.delete("/logout", (req, res, next) =>
-    controller.logout(req, res, next),
+  router.patch(
+    "/is-active/:id",
+    [authMiddleware, adminMiddleware],
+    (req: Request, res: Response, next: NextFunction) =>
+      controller.updateIsActive(req, res, next),
+  );
+
+  router.delete(
+    "/logout",
+    [authMiddleware],
+    (req: Request, res: Response, next: NextFunction) =>
+      controller.logout(req, res, next), // Se tiene que hacer asi porque sino el "this", no sería mi instancia de controlador
   );
 
   return router;

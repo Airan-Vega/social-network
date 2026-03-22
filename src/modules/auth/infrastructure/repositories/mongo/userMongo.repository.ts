@@ -6,13 +6,25 @@ export class UserMongoRepository implements UserRepository {
   async findByEmail(email: string): Promise<User | null> {
     const doc = await UserModel.findOne({ email }).lean();
     if (!doc) return null;
-    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+    return new User(
+      doc.email,
+      doc.password,
+      doc.role,
+      doc.isActive,
+      doc._id.toString(),
+    );
   }
 
   async findById(id: string): Promise<User | null> {
     const doc = await UserModel.findById(id).lean();
     if (!doc) return null;
-    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+    return new User(
+      doc.email,
+      doc.password,
+      doc.role,
+      doc.isActive,
+      doc._id.toString(),
+    );
   }
 
   async save(user: User): Promise<User> {
@@ -21,6 +33,16 @@ export class UserMongoRepository implements UserRepository {
       password: user.getPassword(),
       isActive: user.getIsActive(),
     });
-    return new User(doc.email, doc.password, doc.isActive, doc._id.toString());
+    return new User(
+      doc.email,
+      doc.password,
+      doc.role,
+      doc.isActive,
+      doc._id.toString(),
+    );
+  }
+
+  async updateIsActive(tardetUserId: string, isActive: boolean): Promise<void> {
+    await UserModel.findByIdAndUpdate(tardetUserId, { isActive });
   }
 }

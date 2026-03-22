@@ -8,4 +8,5 @@ export interface TokenService {
 export interface TokenPayload {
   id: string;
   email: string;
+  role: string;
 }

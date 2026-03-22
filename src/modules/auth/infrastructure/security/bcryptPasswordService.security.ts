@@ -4,7 +4,10 @@ import defaultConfig from "../../../../shared/config/default";
 
 export class BcryptPasswordServiceSecurity implements PasswordService {
   async hash(password: string): Promise<string> {
-    return bcrypt.hash(password, defaultConfig.saltRounds);
+    const salt = defaultConfig.saltRounds;
+    console.log(salt);
+
+    return bcrypt.hash(password, Number(defaultConfig.saltRounds));
   }
 
   async compare(password: string, hashedPassword: string): Promise<boolean> {

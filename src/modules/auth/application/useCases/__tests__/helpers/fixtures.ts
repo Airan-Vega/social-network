@@ -17,6 +17,7 @@ export const tokenDto = {
 export const savedUserMock = new User(
   userDto.email,
   hashedPassword,
+  "user",
   true,
   "user-id-123",
 );
@@ -24,6 +25,7 @@ export const savedUserMock = new User(
 export const existingUserMock = new User(
   userDto.email,
   hashedPassword,
+  "user",
   true,
   "existing-id-123",
 );
@@ -31,6 +33,7 @@ export const existingUserMock = new User(
 export const existingUserInactiveMock = new User(
   userDto.email,
   hashedPassword,
+  "user",
   false,
   "existing-id-123",
 );

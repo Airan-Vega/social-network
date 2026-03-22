@@ -34,7 +34,11 @@ export class RegisterUserUseCase {
     const savedUser = await this.userRepository.save(user);
 
     // 4. Generar tokens
-    const payload = { id: savedUser.getId()!, email: savedUser.getEmail() };
+    const payload = {
+      id: savedUser.getId()!,
+      email: savedUser.getEmail(),
+      role: user.getRole(),
+    };
     const accessToken = this.tokenService.signAccessToken(payload);
     const refreshToken = this.tokenService.signRefreshToken(payload);
 

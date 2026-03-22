@@ -4,4 +4,6 @@ export const ERROR_MESSAGES = {
   TOKEN_NOT_FOUND: "Token not found",
   TOKEN_EXPIRED: "Token expired",
   ACCOUNT_DISABLED: "Account is disabled",
+  NO_TOKEN_PROVIDED: "No token provided",
+  ROLE_NOT_ALLOWED: "role not allowed",
 };

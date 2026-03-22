@@ -44,7 +44,11 @@ export class LoginUserUseCase {
     await this.tokenRepository.deleteByUserId(user.getId()!);
 
     // 5. Generar tokens nuevos
-    const payload = { id: user.getId()!, email: user.getEmail() };
+    const payload = {
+      id: user.getId()!,
+      email: user.getEmail(),
+      role: user.getRole(),
+    };
     const accessToken = this.tokenService.signAccessToken(payload);
     const refreshToken = this.tokenService.signRefreshToken(payload);
 

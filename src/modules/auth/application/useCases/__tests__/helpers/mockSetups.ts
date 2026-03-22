@@ -35,6 +35,7 @@ export const setupSuccessfullRenewToken = () => {
   mockTokenService.verifyRefreshToken.mockReturnValue({
     id: "user-id-123",
     email: "test@test.com",
+    role: "user",
   });
   mockTokenService.signAccessToken.mockReturnValue(tokenDto.accessToken);
   mockTokenService.signRefreshToken.mockReturnValue(tokenDto.refreshToken);

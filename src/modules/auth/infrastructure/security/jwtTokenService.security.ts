@@ -43,6 +43,7 @@ export class JwtTokenServiceSecurity implements TokenService {
       return {
         id: decoded.id,
         email: decoded.email,
+        role: decoded.role,
       };
     } catch {
       throw new AppError("Invalid or expired token", 401);
@@ -62,6 +63,7 @@ export class JwtTokenServiceSecurity implements TokenService {
       return {
         id: decoded.id,
         email: decoded.email,
+        role: decoded.role,
       };
     } catch (error) {
       console.error(error);

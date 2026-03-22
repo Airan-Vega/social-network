@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { JwtTokenServiceSecurity } from "../../infrastructure/security/jwtTokenService.security";
 import { AppError } from "../../../../shared/utils/appError";
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 
 const tokenService = new JwtTokenServiceSecurity();
 
@@ -12,7 +13,10 @@ export const authMiddleware = (
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      throw new AppError("No token provided", 401);
+      throw new AppError(
+        ERROR_MESSAGES.NO_TOKEN_PROVIDED,
+        HTTP_CODES.UNAUTHORIZED,
+      );
     }
 
     const token = authHeader.split(" ")[1];

@@ -2,13 +2,23 @@ import {
   checkIfFieldExist,
   validateEmail,
 } from "../../../../shared/utils/validateFields";
+
+type Role = "admin" | "user";
+
 export class User {
   private id?: string;
   private email: string;
   private password: string;
+  private role: Role;
   private isActive: boolean;
 
-  constructor(email: string, password: string, isActive = true, id?: string) {
+  constructor(
+    email: string,
+    password: string,
+    role = "admin",
+    isActive = true,
+    id?: string,
+  ) {
     checkIfFieldExist("email", email);
     validateEmail(email);
     checkIfFieldExist("password", password);
@@ -16,6 +26,7 @@ export class User {
     this.id = id;
     this.email = email;
     this.password = password;
+    this.role = role as Role;
     this.isActive = isActive;
   }
 
@@ -29,6 +40,10 @@ export class User {
 
   public getPassword() {
     return this.password;
+  }
+
+  public getRole() {
+    return this.role;
   }
 
   public getIsActive() {
