@@ -5,7 +5,7 @@ import { RenewTokenUseCase } from "../../application/useCases/renewToken.useCase
 import { clearCookie, setCookie } from "../../../../shared/utils";
 import { AuthResponseDto } from "../../application/dtos/authResponse.dto";
 import { LogoutUserUseCase } from "../../application/useCases/logoutUser.useCase";
-import { UpdateIsActiveUser } from "../../application/useCases/updateIsActiveUser";
+import { UpdateIsActiveUserUseCase } from "../../application/useCases/updateIsActiveUser.useCase";
 
 export class AuthController {
   private ACCESS_TOKEN = "access_token";
@@ -16,7 +16,7 @@ export class AuthController {
     private loginUser: LoginUserUseCase,
     private renewToken: RenewTokenUseCase,
     private logoutUser: LogoutUserUseCase,
-    private updateIsActiveUser: UpdateIsActiveUser,
+    private updateIsActiveUser: UpdateIsActiveUserUseCase,
   ) {}
 
   async register(req: Request, res: Response, next: NextFunction) {
@@ -70,7 +70,7 @@ export class AuthController {
 
   async updateIsActive(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = req.params.id as string;
+      const userId = req.params.id.toString();
       await this.updateIsActiveUser.execute(userId);
       return res
         .status(200)

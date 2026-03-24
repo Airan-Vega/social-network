@@ -1,6 +1,6 @@
+import { UserModel } from "../../../../../shared/models/UserModel";
 import { User } from "../../../domain/entities/user";
 import { UserRepository } from "../../../domain/repositories/user.repository";
-import { UserModel } from "../../models/User.model";
 
 export class UserMongoRepository implements UserRepository {
   async findByEmail(email: string): Promise<User | null> {

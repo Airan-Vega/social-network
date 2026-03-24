@@ -11,6 +11,7 @@ import {
   tokenDto,
   existingUserMock,
 } from "./fixtures";
+import { Role } from "../../../../../../shared/enums";
 
 export const setupSuccessfullRegister = () => {
   mockUserRepository.findByEmail.mockResolvedValue(null);
@@ -35,7 +36,7 @@ export const setupSuccessfullRenewToken = () => {
   mockTokenService.verifyRefreshToken.mockReturnValue({
     id: "user-id-123",
     email: "test@test.com",
-    role: "user",
+    role: Role.USER,
   });
   mockTokenService.signAccessToken.mockReturnValue(tokenDto.accessToken);
   mockTokenService.signRefreshToken.mockReturnValue(tokenDto.refreshToken);

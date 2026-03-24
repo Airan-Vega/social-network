@@ -1,5 +1,6 @@
 import { User } from "../../../../domain/entities/user";
 import { Token } from "../../../../domain/entities/token";
+import { Role } from "../../../../../../shared/enums";
 
 export const password = "123456";
 export const hashedPassword = "hashedPassword";
@@ -17,7 +18,7 @@ export const tokenDto = {
 export const savedUserMock = new User(
   userDto.email,
   hashedPassword,
-  "user",
+  Role.USER,
   true,
   "user-id-123",
 );
@@ -25,7 +26,7 @@ export const savedUserMock = new User(
 export const existingUserMock = new User(
   userDto.email,
   hashedPassword,
-  "user",
+  Role.USER,
   true,
   "existing-id-123",
 );
@@ -33,7 +34,7 @@ export const existingUserMock = new User(
 export const existingUserInactiveMock = new User(
   userDto.email,
   hashedPassword,
-  "user",
+  Role.USER,
   false,
   "existing-id-123",
 );

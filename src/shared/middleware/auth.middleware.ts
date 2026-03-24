@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { JwtTokenServiceSecurity } from "../../infrastructure/security/jwtTokenService.security";
-import { AppError } from "../../../../shared/utils/appError";
-import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
+import { JwtTokenServiceSecurity } from "../../modules/auth/infrastructure/security/jwtTokenService.security";
+import { AppError } from "../utils/appError";
+import { ERROR_MESSAGES, HTTP_CODES } from "../constants";
 
 const tokenService = new JwtTokenServiceSecurity();
 

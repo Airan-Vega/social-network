@@ -4,8 +4,8 @@ import {
   authCredentialsSchema,
   renewTokenSchema,
 } from "../validators/auth.validator";
-import { bodyMiddleware } from "../middlewares/body.middleware";
-import { authMiddleware } from "../middlewares/auth.middleware";
+import { bodyMiddleware } from "../../../../shared/middleware/body.middleware";
+import { authMiddleware } from "../../../../shared/middleware/auth.middleware";
 import { adminMiddleware } from "../../../../shared/middleware/admin.middleware";
 
 export const createAuthRouter = (controller: AuthController) => {

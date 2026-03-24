@@ -1,9 +1,8 @@
+import { Role } from "../../../../shared/enums";
 import {
   checkIfFieldExist,
   validateEmail,
 } from "../../../../shared/utils/validateFields";
-
-type Role = "admin" | "user";
 
 export class User {
   private id?: string;
@@ -15,7 +14,7 @@ export class User {
   constructor(
     email: string,
     password: string,
-    role = "admin",
+    role = Role.USER,
     isActive = true,
     id?: string,
   ) {

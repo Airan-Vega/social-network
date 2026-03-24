@@ -10,6 +10,7 @@ const defaultConfig = {
   jwtRefreshSecret: process.env.JWT_REFRESH_SECRET,
   accessExpiry: process.env.ACCESS_EXPIRY as SignOptions["expiresIn"],
   refreshExpiry: process.env.REFRESH_EXPIRY as SignOptions["expiresIn"],
+  uploadFolder: "uploads",
 };
 
 export default defaultConfig;

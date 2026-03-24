@@ -1,7 +1,7 @@
 import { AppError } from "../../../../shared/utils/appError";
 import { UserRepository } from "../../domain/repositories/user.repository";
 
-export class UpdateIsActiveUser {
+export class UpdateIsActiveUserUseCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(targetUserId: string): Promise<void> {

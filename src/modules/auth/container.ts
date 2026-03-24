@@ -2,7 +2,8 @@ import { LoginUserUseCase } from "./application/useCases/loginUser.useCase";
 import { LogoutUserUseCase } from "./application/useCases/logoutUser.useCase";
 import { RegisterUserUseCase } from "./application/useCases/registerUser.useCase";
 import { RenewTokenUseCase } from "./application/useCases/renewToken.useCase";
-import { UpdateIsActiveUser } from "./application/useCases/updateIsActiveUser";
+import { UpdateIsActiveUserUseCase } from "./application/useCases/updateIsActiveUser.useCase";
+
 import { TokenMongoRepository } from "./infrastructure/repositories/mongo/tokenMongo.repository";
 import { UserMongoRepository } from "./infrastructure/repositories/mongo/userMongo.repository";
 import { BcryptPasswordServiceSecurity } from "./infrastructure/security/bcryptPasswordService.security";
@@ -31,7 +32,7 @@ const loginUser = new LoginUserUseCase(
 );
 const renewToken = new RenewTokenUseCase(tokenRepository, tokenService);
 const logoutUser = new LogoutUserUseCase(tokenRepository);
-const updateIsActiveUser = new UpdateIsActiveUser(userRepository);
+const updateIsActiveUser = new UpdateIsActiveUserUseCase(userRepository);
 
 // 3. Controller
 const authController = new AuthController(
