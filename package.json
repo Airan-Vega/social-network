@@ -19,6 +19,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.1",
+    "multer": "^2.1.1",
+    "ts-node": "^10.9.2",
+    "zod": "^4.3.6"
+  },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@types/bcrypt": "^6.0.0",
@@ -37,6 +50,7 @@
     "husky": "^9.1.7",
     "jest": "^30.3.0",
     "jiti": "^2.6.1",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.6",
     "tsc-alias": "^1.8.16",
@@ -45,17 +59,7 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1"
   },
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.6",
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.3.1",
-    "multer": "^2.1.1",
-    "ts-node": "^10.9.2",
-    "zod": "^4.3.6"
+  "lint-staged": {
+    "*.(js|ts)": "npm run lint:fix"
   }
 }
