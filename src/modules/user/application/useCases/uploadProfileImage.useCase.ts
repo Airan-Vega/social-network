@@ -17,16 +17,10 @@ export class UploadProfileImageUseCase {
       throw new AppError(ERROR_MESSAGES.USER_NOT_FOUND, HTTP_CODES.NOT_FOUND);
     }
 
-    // 2. If user has image, delete it
-    // const userImage = user.getImage();
-    // if (userImage) {
-    //   await this.imageService.delete(userImage);
-    // }
-
-    // 3. Save the new image in local
+    // 2. Save the new image in local
     const pathImage = this.imageService.save(dto.file);
 
-    // 4. Save image path in DB
+    // 3. Save image path in DB
     await this.userRepository.uploadImage(dto.userId, pathImage);
   }
 }

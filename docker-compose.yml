@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   mongodb:
@@ -20,11 +20,12 @@ services:
     ports:
       - "8081:8081"
     environment:
-    # --- CREDENCIALES PARA ENTRAR A LA WEB (localhost:8081) ---
+      # --- CREDENCIALES PARA ENTRAR A LA WEB (localhost:8081) ---
       ME_CONFIG_BASICAUTH_USERNAME: root
-      ME_CONFIG_BASICAUTH_PASSWORD: 123456
+      ME_CONFIG_BASICAUTH_PASSWORD:
+        123456
 
-       # --- CREDENCIALES PARA QUE LA WEB SE CONECTE A MONGO ---
+        # --- CREDENCIALES PARA QUE LA WEB SE CONECTE A MONGO ---
       ME_CONFIG_MONGODB_ADMINUSERNAME: user
       ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
       ME_CONFIG_MONGODB_URL: mongodb://user:123456@mongodb:27017/
