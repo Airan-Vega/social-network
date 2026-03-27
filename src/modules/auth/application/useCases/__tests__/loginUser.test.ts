@@ -41,7 +41,7 @@ describe("Login user", () => {
       expect(result).toEqual({
         accessToken: tokenDto.accessToken,
         refreshToken: tokenDto.refreshToken,
-        //userId: existingUserMock.getId(),
+        userId: existingUserMock.getId(),
       });
     });
 
