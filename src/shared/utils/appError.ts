@@ -5,8 +5,5 @@ export class AppError extends Error {
     super(message);
     this.name = "AppError";
     this.statusCode = statusCode;
-
-    // Necesario en TypeScript cuando se extiende de Error
-    Object.setPrototypeOf(this, AppError.prototype);
   }
 }

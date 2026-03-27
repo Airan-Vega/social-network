@@ -1,6 +1,8 @@
 import multer from "multer";
 import path from "path";
 import defaultConfig from "../../../../shared/config/default";
+import { AppError } from "../../../../shared/utils";
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -23,7 +25,12 @@ const fileFilter = (
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new Error("Invalid file type. Only JPEG, PNG and WEBP are allowed"));
+    cb(
+      new AppError(
+        ERROR_MESSAGES.INVALID_FILE_TYPE,
+        HTTP_CODES.UNSUPPORTED_MEDIA_TYPE,
+      ),
+    );
   }
 };
 

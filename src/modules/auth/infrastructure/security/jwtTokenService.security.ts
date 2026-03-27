@@ -5,6 +5,8 @@ import {
 } from "../../application/services/token.service";
 import { AppError } from "../../../../shared/utils/appError";
 import defaultConfig from "../../../../shared/config/default";
+import { HTTP_CODES } from "../../../../shared/constants";
+import { ERROR_MESSAGES } from "../../../../shared/constants/errorMessages";
 
 export class JwtTokenServiceSecurity implements TokenService {
   private readonly accessSecret = defaultConfig.jwtAccessSecret;
@@ -14,7 +16,10 @@ export class JwtTokenServiceSecurity implements TokenService {
 
   signAccessToken(payload: TokenPayload): string {
     if (!this.accessSecret) {
-      throw new Error("JWT_ACCESS_SECRET is required");
+      throw new AppError(
+        ERROR_MESSAGES.JWT_ACCESS_SECRET_IS_REQUIRED,
+        HTTP_CODES.BAD_REQUEST,
+      );
     }
 
     return jwt.sign(payload, this.accessSecret, {
@@ -24,7 +29,10 @@ export class JwtTokenServiceSecurity implements TokenService {
 
   signRefreshToken(payload: TokenPayload): string {
     if (!this.refreshSecret) {
-      throw new Error("JWT_REFRESH_SECRET is required");
+      throw new AppError(
+        ERROR_MESSAGES.JWT_REFRESH_SECRET_IS_REQUIRED,
+        HTTP_CODES.BAD_REQUEST,
+      );
     }
     return jwt.sign(payload, this.refreshSecret, {
       expiresIn: this.refreshExpiry,
@@ -34,7 +42,10 @@ export class JwtTokenServiceSecurity implements TokenService {
   verifyAccessToken(token: string): TokenPayload {
     try {
       if (!this.accessSecret) {
-        throw new Error("JWT_ACCESS_SECRET is required");
+        throw new AppError(
+          ERROR_MESSAGES.JWT_ACCESS_SECRET_IS_REQUIRED,
+          HTTP_CODES.BAD_REQUEST,
+        );
       }
       const decoded = jwt.verify(token, this.accessSecret) as TokenPayload & {
         exp: number;
@@ -46,14 +57,17 @@ export class JwtTokenServiceSecurity implements TokenService {
         role: decoded.role,
       };
     } catch {
-      throw new AppError("Invalid or expired token", 401);
+      throw new AppError(ERROR_MESSAGES.INVALID_TOKEN, HTTP_CODES.UNAUTHORIZED);
     }
   }
 
   verifyRefreshToken(token: string): TokenPayload {
     try {
       if (!this.refreshSecret) {
-        throw new Error("JWT_REFRESH_SECRET is required");
+        throw new AppError(
+          ERROR_MESSAGES.JWT_REFRESH_SECRET_IS_REQUIRED,
+          HTTP_CODES.BAD_REQUEST,
+        );
       }
       const decoded = jwt.verify(token, this.refreshSecret) as TokenPayload & {
         exp: number;
@@ -68,7 +82,7 @@ export class JwtTokenServiceSecurity implements TokenService {
     } catch (error) {
       console.error(error);
 
-      throw new AppError("Invalid or expired token", 401);
+      throw new AppError(ERROR_MESSAGES.INVALID_TOKEN, HTTP_CODES.UNAUTHORIZED);
     }
   }
 }

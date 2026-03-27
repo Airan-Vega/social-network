@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import defaultConfig from "../config/default";
+import { AppError } from "../utils";
+import { ERROR_MESSAGES, HTTP_CODES } from "../constants";
 
 async function dbConnection() {
   try {
@@ -7,7 +9,10 @@ async function dbConnection() {
     console.log("Conexión DB existosa");
   } catch (error) {
     console.log(error);
-    throw new Error("Error al conectarse a la base de datos, ver Logs");
+    throw new AppError(
+      ERROR_MESSAGES.ERROR_CONNECT_DATABASE,
+      HTTP_CODES.SERVER_ERROR,
+    );
   }
 }
 

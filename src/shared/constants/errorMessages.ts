@@ -1,4 +1,7 @@
 export const ERROR_MESSAGES = {
+  ERROR_CONNECT_DATABASE: "Error connecting to the database; see logs",
+  JWT_ACCESS_SECRET_IS_REQUIRED: "JWT_ACCESS_SECRET is required",
+  JWT_REFRESH_SECRET_IS_REQUIRED: "JWT_REFRESH_SECRET is required",
   EMAIL_ALREADY_IN_USE: "Email already in use",
   INVALID_CREDENTIALS: "Invalid credentials",
   TOKEN_NOT_FOUND: "Token not found",
@@ -8,5 +11,9 @@ export const ERROR_MESSAGES = {
   ROLE_NOT_ALLOWED: "Role not allowed",
   USER_NOT_FOUND: "User not found",
   NICK_IS_REQUIRED: "Nick is required",
-  PROFILE_IMAGE_IS_REQUIRED: " profile image is required",
+  PROFILE_IMAGE_IS_REQUIRED: "Profile image is required",
+  INVALID_TOKEN: "Invalid or expired token",
+  INVALID_FILE_TYPE: "Invalid file type. Only JPEG, PNG and WEBP are allowed",
+  ERROR_DELETING_FILE: "Error deleting the file",
+  INVALID_EMAIL_FORMAT: "Invalid email format",
 };

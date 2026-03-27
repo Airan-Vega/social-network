@@ -2,6 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 import { ImageService } from "../../application/services/image.service";
+import { AppError } from "../../../../shared/utils";
+import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 
 export class LocalImageService implements ImageService {
   save(file: Express.Multer.File): string {
@@ -17,7 +19,10 @@ export class LocalImageService implements ImageService {
         // El archivo no existe → no pasa nada
         return;
       }
-      throw new Error("Error deleting the file");
+      throw new AppError(
+        ERROR_MESSAGES.ERROR_DELETING_FILE,
+        HTTP_CODES.SERVER_ERROR,
+      );
     }
   }
 }
