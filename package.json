@@ -33,6 +33,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "^10.0.1",
     "@types/bcrypt": "^6.0.0",
     "@types/cookie-parser": "^1.4.10",
@@ -50,7 +52,6 @@
     "husky": "^9.1.7",
     "jest": "^30.3.0",
     "jiti": "^2.6.1",
-    "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.6",
     "tsc-alias": "^1.8.16",
@@ -58,8 +59,5 @@
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.1"
-  },
-  "lint-staged": {
-    "*.(js|ts)": "npm run lint:fix"
   }
 }
