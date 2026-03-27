@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
-import { AppError } from "../../../../shared/utils/appError";
+import { ERROR_MESSAGES, HTTP_CODES } from "@src/shared/constants";
+import { AppError } from "@src/shared/utils";
 import { Token } from "../../domain/entities/token";
 import { User } from "../../domain/entities/user";
 import { TokenRepository } from "../../domain/repositories/token.repository";
