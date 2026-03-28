@@ -15,6 +15,8 @@ Mongoose
 
 ![Backend schema](./assets/backend-schema.png)
 
+![Backend schema](./assets/drawDB_Schema.png)
+
 ## Schema of Clean Architecture
 
 ![Clean architecture schema](./assets/clean-architecture-schema.png)
@@ -30,7 +32,7 @@ Mongoose
 ```
 1º entities
 2º Repositories
-```
+```∏
 
 ### 2º Application
 
