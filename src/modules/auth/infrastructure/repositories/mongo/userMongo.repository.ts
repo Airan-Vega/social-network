@@ -1,4 +1,4 @@
-import { UserModel } from "../../../../../shared/models/UserModel";
+import { UserModel } from "../../../../../shared/models/user.model";
 import { User } from "../../../domain/entities/user";
 import { UserRepository } from "../../../domain/repositories/user.repository";
 

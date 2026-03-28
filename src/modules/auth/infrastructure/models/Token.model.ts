@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface ITokenDocument extends Document {
+interface ITokenDocument extends Document {
   userId: mongoose.Types.ObjectId;
   token: string;
   expiresAt: Date;

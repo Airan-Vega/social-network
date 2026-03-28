@@ -16,4 +16,6 @@ export const ERROR_MESSAGES = {
   INVALID_FILE_TYPE: "Invalid file type. Only JPEG, PNG and WEBP are allowed",
   ERROR_DELETING_FILE: "Error deleting the file",
   INVALID_EMAIL_FORMAT: "Invalid email format",
+  FOLLOWED_ALREADY_EXIST: "You already follow this person",
+  FOLLOWED_NOT_EXIST: "Error deleting: You have never followed this user",
 };
