@@ -1,4 +1,3 @@
-import { Role } from "@src/shared/enums";
 import { checkIfFieldExist, validateEmail } from "../../../../shared/utils";
 
 export class User {
