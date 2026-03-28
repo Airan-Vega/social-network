@@ -1,6 +1,6 @@
 import { Token } from "../../../domain/entities/token";
 import { TokenRepository } from "../../../domain/repositories/token.repository";
-import { TokenModel } from "../../models/token.model";
+import { TokenModel } from "../../models/Token.model";
 
 export class TokenMongoRepository implements TokenRepository {
   async save(token: Token): Promise<Token> {
