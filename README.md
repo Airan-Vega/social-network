@@ -33,8 +33,8 @@ Commitlint
 
 ```
 1º entities
-2º Repositories
-```∏
+2º repositories
+```
 
 ### 2º Application
 
