@@ -11,6 +11,8 @@ MongoDB
 Mongoose
 Jest
 Husky
+Docker + docker-compose
+Commitlint
 ```
 
 ## Schema of Database
