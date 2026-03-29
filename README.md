@@ -9,11 +9,11 @@ Prettier
 ESLint
 MongoDB
 Mongoose
+Jest
+Husky
 ```
 
 ## Schema of Database
-
-![Backend schema](./assets/backend-schema.png)
 
 ![Backend schema](./assets/drawDB_Schema.png)
 
