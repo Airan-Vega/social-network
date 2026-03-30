@@ -1,4 +1,3 @@
-import { Role } from "@src/shared/enums";
 import refreshExpiry from "@src/shared/utils/refreshExpiry";
 import { Types } from "mongoose";
 
