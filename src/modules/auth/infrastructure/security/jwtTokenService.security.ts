@@ -40,13 +40,13 @@ export class JwtTokenServiceSecurity implements TokenService {
   }
 
   verifyAccessToken(token: string): TokenPayload {
+    if (!this.accessSecret) {
+      throw new AppError(
+        ERROR_MESSAGES.JWT_ACCESS_SECRET_IS_REQUIRED,
+        HTTP_CODES.BAD_REQUEST,
+      );
+    }
     try {
-      if (!this.accessSecret) {
-        throw new AppError(
-          ERROR_MESSAGES.JWT_ACCESS_SECRET_IS_REQUIRED,
-          HTTP_CODES.BAD_REQUEST,
-        );
-      }
       const decoded = jwt.verify(token, this.accessSecret) as TokenPayload & {
         exp: number;
         iat: number;
@@ -62,13 +62,13 @@ export class JwtTokenServiceSecurity implements TokenService {
   }
 
   verifyRefreshToken(token: string): TokenPayload {
+    if (!this.refreshSecret) {
+      throw new AppError(
+        ERROR_MESSAGES.JWT_REFRESH_SECRET_IS_REQUIRED,
+        HTTP_CODES.BAD_REQUEST,
+      );
+    }
     try {
-      if (!this.refreshSecret) {
-        throw new AppError(
-          ERROR_MESSAGES.JWT_REFRESH_SECRET_IS_REQUIRED,
-          HTTP_CODES.BAD_REQUEST,
-        );
-      }
       const decoded = jwt.verify(token, this.refreshSecret) as TokenPayload & {
         exp: number;
         iat: number;

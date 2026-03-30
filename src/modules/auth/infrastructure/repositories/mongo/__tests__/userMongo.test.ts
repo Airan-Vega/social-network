@@ -5,7 +5,7 @@ import { clearDatabase, closeDatabase, connect } from "./helpers/test-setup";
 import { mockUser, otherMockUser } from "./helpers/mocks";
 import { UserModel } from "@src/shared/models/user.model";
 
-describe("Auth -> Repositories -> Mongo -> UserMongo", () => {
+describe("Auth -> Infrastructure -> Repositories -> Mongo -> UserMongo", () => {
   let repository: UserMongoRepository;
   let userEntity: User;
 

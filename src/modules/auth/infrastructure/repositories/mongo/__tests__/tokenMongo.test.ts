@@ -4,7 +4,7 @@ import { Token } from "@src/modules/auth/domain/entities/token";
 import { clearDatabase, closeDatabase, connect } from "./helpers/test-setup";
 import { mockToken, otherMockToken } from "./helpers/mocks";
 
-describe("Auth -> Repositories -> Mongo -> TokenMongo", () => {
+describe("Auth -> Infrastructure -> Repositories -> Mongo -> TokenMongo", () => {
   let repository: TokenMongoRepository;
   let tokenEntity: Token;
 
