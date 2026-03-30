@@ -16,7 +16,7 @@ import {
   userDto,
 } from "./helpers";
 
-describe("RegisterUser", () => {
+describe("Auth -> Application -> UseCases -> RegisterUser", () => {
   let registerUser: RegisterUserUseCase;
 
   beforeEach(() => {

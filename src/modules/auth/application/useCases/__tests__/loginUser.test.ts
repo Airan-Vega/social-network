@@ -16,7 +16,7 @@ import {
   mockUserRepository,
 } from "./helpers/mocks";
 
-describe("Login user", () => {
+describe("Auth -> Application -> UseCases -> Login user", () => {
   let loginUser: LoginUserUseCase;
 
   beforeEach(() => {

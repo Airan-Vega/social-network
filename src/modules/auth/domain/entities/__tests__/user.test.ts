@@ -13,7 +13,7 @@ jest.mock("@src/shared/utils/validateFields", () => ({
   validateEmail: jest.fn(),
 }));
 
-describe("User", () => {
+describe("Auth -> Domain -> Entities -> User", () => {
   let user: User;
   const { email, id, isActive, password, role } = userData;
 

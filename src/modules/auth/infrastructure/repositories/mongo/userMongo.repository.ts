@@ -42,7 +42,7 @@ export class UserMongoRepository implements UserRepository {
     );
   }
 
-  async updateIsActive(tardetUserId: string, isActive: boolean): Promise<void> {
-    await UserModel.findByIdAndUpdate(tardetUserId, { isActive });
+  async updateIsActive(userId: string, isActive: boolean): Promise<void> {
+    await UserModel.findByIdAndUpdate(userId, { isActive });
   }
 }
