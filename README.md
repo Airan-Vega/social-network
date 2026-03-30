@@ -10,6 +10,7 @@ ESLint
 MongoDB
 Mongoose
 Jest
+mongodb-memory-server
 Husky
 Docker + docker-compose
 Commitlint
@@ -58,4 +59,17 @@ Commitlint
 1º controllers
 2º middlewares
 3º routes
+```
+
+## Tests
+```
+domain/entities                         → Unit tests          
+application/use-cases                   → Unit tests
+infrastructure/repositories             → Integration tests with 'mongodb-memory-server' because 'repository' 
+                                          interacts with MongoDB
+infrastructure/security o services      → Unit tests          
+interfaces/controllers                  → Unit tests o E2E    
+interfaces/middlewares                  → Unit tests          
+interfaces/validators                   → Unit tests          
+container                               → No se testea
 ```

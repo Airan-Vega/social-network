@@ -1,6 +1,7 @@
 import { User } from "../../../../domain/entities/user";
 import { Token } from "../../../../domain/entities/token";
 import { Role } from "../../../../../../shared/enums";
+import refreshExpiry from "@src/shared/utils/refreshExpiry";
 
 export const password = "123456";
 export const hashedPassword = "hashedPassword";
@@ -42,5 +43,5 @@ export const existingUserInactiveMock = new User(
 export const savedTokenMock = new Token(
   "user-id-123",
   tokenDto.refreshToken,
-  new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+  refreshExpiry,
 );

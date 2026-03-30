@@ -1,3 +1,4 @@
+import refreshExpiry from "@src/shared/utils/refreshExpiry";
 import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 import { AppError } from "../../../../shared/utils/appError";
 import { Token } from "../../domain/entities/token";
@@ -39,7 +40,7 @@ export class RenewTokenUseCase {
     const refreshToken = this.tokenService.signRefreshToken(payload);
 
     // 5. Persistir el nuevo refresh token
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    const expiresAt = refreshExpiry;
     const newTokenEntity = new Token(
       tokenEntity.getUserId(),
       refreshToken,

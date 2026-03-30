@@ -8,6 +8,7 @@ import { AuthCredentialsDto } from "../dtos/authCredentials.dto";
 import { AuthResponseDto } from "../dtos/authResponse.dto";
 import { PasswordService } from "../services/password.service";
 import { TokenService } from "../services/token.service";
+import refreshExpiry from "@src/shared/utils/refreshExpiry";
 
 export class RegisterUserUseCase {
   constructor(
@@ -43,7 +44,7 @@ export class RegisterUserUseCase {
     const refreshToken = this.tokenService.signRefreshToken(payload);
 
     // 5. Persistir el refresh token
-    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 días
+    const expiresAt = refreshExpiry; // 7 días
     const tokenEntity = new Token(savedUser.getId()!, refreshToken, expiresAt);
     await this.tokenRepository.save(tokenEntity);
 
