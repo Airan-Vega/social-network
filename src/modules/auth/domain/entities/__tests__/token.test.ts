@@ -73,7 +73,7 @@ describe("Token", () => {
 
       spyCheckIfFieldExist(errorMessage);
 
-      expect(() => new Token(userId, tokenKey, null as any)).toThrow(
+      expect(() => new Token(userId, tokenKey, "" as unknown as Date)).toThrow(
         errorMessage,
       );
     });
