@@ -1,20 +1,17 @@
-import { checkIfFieldExist } from "@src/shared/utils";
 import { Attachment } from "../types/attachment";
 
 export class Publication {
-  private userId: string;
+  private userId?: string;
   private text?: string;
   private attachments?: Attachment[];
   private id?: string;
 
   constructor(
-    userId: string,
+    userId?: string,
     text?: string,
     attachments?: Attachment[],
     id?: string,
   ) {
-    checkIfFieldExist("userId", userId);
-
     this.userId = userId;
     this.text = text;
     this.attachments = attachments;

@@ -21,16 +21,19 @@ export class FollowMongoRepository implements FollowRepository {
   }
 
   // Lista de personas que me siguen
-  async getFollower(userId: string, page = 1): Promise<User[] | []> {
-    const PAGE_SIZE = 10;
-    const skip = (page - 1) * PAGE_SIZE;
+  async getFollower(
+    userId: string,
+    page = 1,
+    pageSize = 10,
+  ): Promise<User[] | []> {
+    const skip = (page - 1) * pageSize;
     const docs = await FollowModel.find({ followedId: userId })
       .populate<{ userId: IUserDocument }>({
         path: "userId",
         select: "_id email isActive nick image",
       })
       .skip(skip)
-      .limit(PAGE_SIZE)
+      .limit(pageSize)
       .lean();
 
     if (!docs) {
@@ -52,16 +55,19 @@ export class FollowMongoRepository implements FollowRepository {
   }
 
   // Lista de personas a las que sigo
-  async getFollowed(userId: string, page = 1): Promise<User[] | []> {
-    const PAGE_SIZE = 10;
-    const skip = (page - 1) * PAGE_SIZE;
+  async getFollowed(
+    userId: string,
+    page = 1,
+    pageSize = 10,
+  ): Promise<User[] | []> {
+    const skip = (page - 1) * pageSize;
     const docs = await FollowModel.find({ userId })
       .populate<{ followedId: IUserDocument }>({
         path: "followedId",
         select: "_id email isActive nick image",
       })
       .skip(skip)
-      .limit(PAGE_SIZE)
+      .limit(pageSize)
       .lean();
 
     if (!docs) {
