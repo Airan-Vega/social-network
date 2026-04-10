@@ -18,4 +18,7 @@ export const ERROR_MESSAGES = {
   INVALID_EMAIL_FORMAT: "Invalid email format",
   FOLLOWED_ALREADY_EXIST: "You already follow this person",
   FOLLOWED_NOT_EXIST: "Error deleting: You have never followed this user",
+  PUBLICATION_NOT_FOUND: "Publication not found",
+  FORBIDDEN_RESOURCE_MODIFICATION:
+    "You are not allowed to modify this resource",
 };

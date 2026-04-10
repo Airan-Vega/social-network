@@ -3,18 +3,17 @@ import { Attachment } from "../types/attachment";
 
 export class Publication {
   private userId: string;
-  private text: string;
+  private text?: string;
   private attachments?: Attachment[];
   private id?: string;
 
   constructor(
     userId: string,
-    text: string,
+    text?: string,
     attachments?: Attachment[],
     id?: string,
   ) {
     checkIfFieldExist("userId", userId);
-    checkIfFieldExist("text", text);
 
     this.userId = userId;
     this.text = text;

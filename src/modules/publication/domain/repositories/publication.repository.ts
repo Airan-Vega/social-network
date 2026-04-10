@@ -1,12 +1,11 @@
 import { Publication } from "../entities/publication";
-import { UpdatePublication } from "../types/ updatePublication";
 
 export interface PublicationRepository {
-  getAll(): Promise<Publication[]>;
+  getAllByUser(
+    userAuthenticated: string,
+    page?: number,
+  ): Promise<Publication[]>;
   create(publication: Publication): Promise<Publication>;
-  update(
-    publicationId: string,
-    publication: UpdatePublication,
-  ): Promise<Publication>;
+  update(publication: Publication): Promise<Publication | null>;
   delete(publicationId: string): Promise<void>;
 }

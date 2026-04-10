@@ -1,4 +1,4 @@
-type MimeType =
+export type MimeType =
   // Imagenes
   | "image/jpeg"
   | "image/png"
@@ -21,7 +21,7 @@ export interface Attachment {
   is_looping?: boolean;
 }
 
-interface Dimension {
+export interface Dimension {
   width: number;
   height: number;
 }

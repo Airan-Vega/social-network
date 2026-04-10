@@ -1,16 +1,17 @@
+import { Publication } from "../../domain/entities/publication";
 import { PublicationRepository } from "../../domain/repositories/publication.repository";
-import { UpdatePublication } from "../../domain/types/ updatePublication";
+import { PublicationDto } from "../dtos/publication.dto";
 
 export class UpdatePublicationUseCase {
   constructor(private publicationRepository: PublicationRepository) {}
 
-  public async execute(
-    publicationId: string,
-    publicationValues: UpdatePublication,
-  ) {
-    return await this.publicationRepository.update(
-      publicationId,
-      publicationValues,
+  public async execute(dto: PublicationDto): Promise<Publication | null> {
+    const newPublication = new Publication(
+      dto.userId,
+      dto.text,
+      dto.attachments,
+      dto.id,
     );
+    return await this.publicationRepository.update(newPublication);
   }
 }
