@@ -1,16 +1,16 @@
 import { checkIfFieldExist } from "@src/shared/utils";
-import { IAttachments } from "../interfaces/attachment.interface";
+import { Attachment } from "../types/attachment";
 
 export class Publication {
   private userId: string;
   private text: string;
-  private attachments?: IAttachments[];
+  private attachments?: Attachment[];
   private id?: string;
 
   constructor(
     userId: string,
     text: string,
-    attachments?: IAttachments[],
+    attachments?: Attachment[],
     id?: string,
   ) {
     checkIfFieldExist("userId", userId);

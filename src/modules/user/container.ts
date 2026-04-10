@@ -1,7 +1,7 @@
 import { GetOwnProfileUseCase } from "./application/useCases/getOwnProfile.useCase";
 import { UpdateUserUseCase } from "./application/useCases/updateUser.useCase";
 import { SearchByNickUseCase } from "./application/useCases/searchByNick.useCase";
-import { UserMongoRepository } from "./infrastructure/repositories/mongo/UserRepositoryMongo.repository";
+import { UserMongoRepository } from "./infrastructure/repositories/mongo/userRepositoryMongo.repository";
 import { UserController } from "./interfaces/controllers/user.controller";
 import { createUserRouter } from "./interfaces/routes/user.route";
 import { UploadProfileImageUseCase } from "./application/useCases/uploadProfileImage.useCase";

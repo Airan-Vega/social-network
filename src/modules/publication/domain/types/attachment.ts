@@ -11,7 +11,7 @@ type MimeType =
   // Documentos
   | "application/pdf";
 
-export interface IAttachments {
+export interface Attachment {
   url: string;
   type: string;
   size_bytes: number;

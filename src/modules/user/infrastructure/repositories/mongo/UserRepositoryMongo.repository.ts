@@ -1,5 +1,5 @@
+import { UpdateProfile } from "@src/modules/user/domain/types/ updateProfile";
 import { UserModel } from "../../../../../shared/models/user.model";
-import { UpdateProfileDto } from "../../../application/dtos/updateProfile.dto";
 import { User } from "../../../domain/entities/user";
 import { UserRepository } from "../../../domain/repositories/user";
 
@@ -42,7 +42,7 @@ export class UserMongoRepository implements UserRepository {
     );
   }
 
-  async update(id: string, values: UpdateProfileDto): Promise<User | null> {
+  async update(id: string, values: UpdateProfile): Promise<User | null> {
     const doc = await UserModel.findByIdAndUpdate(
       id,
       { name: values.name, surname: values.surname, nick: values.nick },
