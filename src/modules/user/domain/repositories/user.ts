@@ -1,5 +1,5 @@
 import { User } from "../entities/user";
-import { UpdateProfile } from "../types/ updateProfile";
+import { UpdateProfile } from "../types/updateProfile";
 
 export interface UserRepository {
   findById(userId: string): Promise<User | null>;

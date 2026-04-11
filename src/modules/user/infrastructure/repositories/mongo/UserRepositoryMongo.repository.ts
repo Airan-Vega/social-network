@@ -1,4 +1,4 @@
-import { UpdateProfile } from "@src/modules/user/domain/types/ updateProfile";
+import { UpdateProfile } from "@src/modules/user/domain/types/updateProfile";
 import { UserModel } from "../../../../../shared/models/user.model";
 import { User } from "../../../domain/entities/user";
 import { UserRepository } from "../../../domain/repositories/user";

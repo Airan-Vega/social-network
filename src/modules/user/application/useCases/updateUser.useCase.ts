@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 import { AppError } from "../../../../shared/utils/appError";
 import { UserRepository } from "../../domain/repositories/user";
-import { UpdateProfile } from "../../domain/types/ updateProfile";
+import { UpdateProfile } from "../../domain/types/updateProfile";
 
 export class UpdateUserUseCase {
   constructor(private userRepository: UserRepository) {}
