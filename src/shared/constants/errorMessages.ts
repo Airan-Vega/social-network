@@ -20,4 +20,5 @@ export const ERROR_MESSAGES = {
   FOLLOWED_NOT_EXIST: "Error deleting: You have never followed this user",
   USER_ID_IS_REQUIRED: "UserId is required",
   PUBLICATION_NOT_FOUND: "Publication not found",
+  ATTACHMENTS_ARE_REQUIRED: "Attachments are required",
 };

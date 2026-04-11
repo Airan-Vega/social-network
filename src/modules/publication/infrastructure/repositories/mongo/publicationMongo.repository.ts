@@ -5,6 +5,7 @@ import { PublicationRepository } from "@src/modules/publication/domain/repositor
 import { PublicationModel } from "../../models/publication.model";
 import { AppError } from "@src/shared/utils";
 import { ERROR_MESSAGES, HTTP_CODES } from "@src/shared/constants";
+import { Attachment } from "@src/modules/publication/domain/types/attachment";
 
 export class PublicationMongoRepository implements PublicationRepository {
   async getAllByUser(
@@ -90,5 +91,21 @@ export class PublicationMongoRepository implements PublicationRepository {
       );
     }
     await PublicationModel.findByIdAndDelete(publicationId);
+  }
+
+  async uploadAttachments(
+    publicationId: string,
+    attachments: Attachment[],
+  ): Promise<void> {
+    const doc = await PublicationModel.findById(publicationId);
+
+    if (!doc) {
+      throw new AppError(
+        ERROR_MESSAGES.PUBLICATION_NOT_FOUND,
+        HTTP_CODES.NOT_FOUND,
+      );
+    }
+
+    await PublicationModel.updateOne({ _id: publicationId }, { attachments });
   }
 }

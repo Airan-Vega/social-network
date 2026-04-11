@@ -1,25 +1,24 @@
 import { Schema, Document } from "mongoose";
-import { Dimension, MimeType } from "../../domain/types/attachment";
+import { Dimension, MimeType, Type } from "../../domain/types/attachment";
 
 interface IAttachmentDocument extends Document {
   url: string;
-  type: string;
+  type: Type;
   size_bytes: number;
   mime_type: MimeType;
   dimensions?: Dimension;
-  duration_seconds?: number;
-  is_looping?: boolean;
 }
 
-export const attachmentSchema = new Schema<IAttachmentDocument>({
-  url: { type: String, required: true },
-  type: { type: String, required: true },
-  size_bytes: { type: Number, required: true },
-  mime_type: { type: String, required: true },
-  dimensions: {
-    width: Number,
-    height: Number,
+export const attachmentSchema = new Schema<IAttachmentDocument>(
+  {
+    url: { type: String, required: true },
+    type: { type: String, required: true },
+    size_bytes: { type: Number, required: true },
+    mime_type: { type: String, required: true },
+    dimensions: {
+      width: Number,
+      height: Number,
+    },
   },
-  duration_seconds: Number,
-  is_looping: Boolean,
-});
+  { _id: false },
+);

@@ -5,15 +5,22 @@ import { UpdatePublicationUseCase } from "./application/useCases/updatePublicati
 import { PublicationMongoRepository } from "./infrastructure/repositories/mongo/publicationMongo.repository";
 import { PublicationController } from "./interfaces/controllers/publication.controller";
 import { createPublicationRouter } from "./interfaces/routes/publication.route";
+import { UploadAttachmentsUseCase } from "./application/useCases/uploadAttachments.useCase";
+import { LocalAttachmentsService } from "./infrastructure/services/localAttachments.service";
 
 // 1. Infrastructure
 const publicationRepository = new PublicationMongoRepository();
+const localAttachments = new LocalAttachmentsService();
 
 // 2. Use-cases
 const deletePublication = new DeletePublicationUseCase(publicationRepository);
 const getPublication = new GetPublicationsUseCase(publicationRepository);
 const updatePublication = new UpdatePublicationUseCase(publicationRepository);
 const createPublication = new CreatePublicationUseCase(publicationRepository);
+const uploadAttachments = new UploadAttachmentsUseCase(
+  publicationRepository,
+  localAttachments,
+);
 
 // 3. Controller
 const publicationController = new PublicationController(
@@ -21,6 +28,7 @@ const publicationController = new PublicationController(
   deletePublication,
   getPublication,
   updatePublication,
+  uploadAttachments,
 );
 
 // 4. Router — lo que exportas para app.ts

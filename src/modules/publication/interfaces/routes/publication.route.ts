@@ -1,8 +1,9 @@
-import { Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { PublicationController } from "../controllers/publication.controller";
 import { authMiddleware } from "@src/shared/middleware/auth.middleware";
 import { bodyMiddleware } from "@src/shared/middleware/body.middleware";
 import { addPublicationSchema } from "../validators/publication.validator";
+import { upload } from "../../infrastructure/config/multer.config";
 
 export const createPublicationRouter = (controller: PublicationController) => {
   const router = Router();
@@ -28,6 +29,13 @@ export const createPublicationRouter = (controller: PublicationController) => {
 
   router.delete("/delete/:id", (req, res, next) =>
     controller.deletePublication(req, res, next),
+  );
+
+  router.patch(
+    "/upload-attachments/:id",
+    [upload.array("files", 10)],
+    (req: Request, res: Response, next: NextFunction) =>
+      controller.uploadAttachments(req, res, next),
   );
 
   return router;

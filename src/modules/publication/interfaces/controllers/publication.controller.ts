@@ -1,8 +1,12 @@
 import { NextFunction, Request, Response } from "express";
+
 import { CreatePublicationUseCase } from "../../application/useCases/createPublication.useCase";
 import { DeletePublicationUseCase } from "../../application/useCases/deletePublication.useCase";
 import { GetPublicationsUseCase } from "../../application/useCases/getPublications.useCase";
 import { UpdatePublicationUseCase } from "../../application/useCases/updatePublication.useCase";
+import { UploadAttachmentsUseCase } from "../../application/useCases/uploadAttachments.useCase";
+import { AppError } from "@src/shared/utils";
+import { ERROR_MESSAGES, HTTP_CODES } from "@src/shared/constants";
 
 export class PublicationController {
   constructor(
@@ -10,6 +14,7 @@ export class PublicationController {
     private deletePublicationUseCase: DeletePublicationUseCase,
     private getPublicationsUseCase: GetPublicationsUseCase,
     private updatePublicationUseCase: UpdatePublicationUseCase,
+    private uploadAttachmentsUseCase: UploadAttachmentsUseCase,
   ) {}
 
   public async createPublication(
@@ -76,6 +81,32 @@ export class PublicationController {
       await this.deletePublicationUseCase.execute(publicationId);
       return res.status(200).json({
         message: "The publication has been deleted correctly",
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  public async uploadAttachments(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
+    try {
+      const publicationId = req.params.id.toString();
+      const files = req.files as Express.Multer.File[];
+
+      if (!files || files.length === 0) {
+        throw new AppError(
+          ERROR_MESSAGES.ATTACHMENTS_ARE_REQUIRED,
+          HTTP_CODES.BAD_REQUEST,
+        );
+      }
+
+      await this.uploadAttachmentsUseCase.execute(publicationId, files);
+
+      return res.status(200).json({
+        message: "Files saved successfully",
       });
     } catch (error) {
       next(error);

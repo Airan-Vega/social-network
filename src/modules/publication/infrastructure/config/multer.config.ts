@@ -1,20 +1,21 @@
 import multer from "multer";
-import path from "path";
-import { AppError, createFolder } from "../../../../shared/utils";
+import { AppError, createFolder, deleteFolder } from "../../../../shared/utils";
 import { ERROR_MESSAGES, HTTP_CODES } from "../../../../shared/constants";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const pathFolder = "uploads/users";
+    const publicationId = req.params.id;
+    const pathFolder = `uploads/publications/${publicationId}`;
+    deleteFolder(pathFolder);
+
     createFolder(pathFolder);
 
     cb(null, pathFolder); // carpeta local
   },
   filename: (req, file, cb) => {
-    const uniqueName = req.user?.id; // Viene del middleware de autenticacion
-    const ext = path.extname(file.originalname);
+    const uniqueName = file.originalname;
 
-    cb(null, `${uniqueName}${ext}`);
+    cb(null, uniqueName);
   },
 });
 
@@ -23,7 +24,19 @@ const fileFilter = (
   file: Express.Multer.File,
   cb: multer.FileFilterCallback,
 ) => {
-  const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+  const allowedTypes = [
+    // Imagenes
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    // Animaciones
+    "image/gif",
+    // Videos
+    "video/mp4",
+    "video/webm",
+    // Documentos
+    "application/pdf",
+  ];
   if (allowedTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
@@ -39,5 +52,5 @@ const fileFilter = (
 export const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB máximo
+  //limits: { fileSize: 5 * 1024 * 1024 }, // 5MB máximo
 });
